@@ -9,7 +9,10 @@
     "create-express",
     "scaffold",
     "express-scaffold",
-    "generator"
+    "generator",
+    "mvc",
+    "starter",
+    "boilerplate"
   ],
   "author": "Karthikeyan M <mkarthi.dev@gmail.com>",
   "license": "MIT",
