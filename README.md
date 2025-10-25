@@ -51,7 +51,7 @@ my-express-app/
 You can use this boilerplate with `npx`:
 
 ```bash
-npx create-new-express-project
+npx create-new-express-project my-express-app
 cd my-express-app
 npm install
 ````

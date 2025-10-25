@@ -1,6 +1,6 @@
 {
   "name": "create-new-express-project",
-  "version": "1.0.0",
+  "version": "1.0.5",
   "description": "Create express app in MVC pattern",
   "keywords": [
     "express",
@@ -16,10 +16,10 @@
   ],
   "author": "Karthikeyan M <mkarthi.dev@gmail.com>",
   "license": "MIT",
-  "homepage": "https://github.com/SBoudrias/Inquirer.js/blob/main/packages/inquirer/README.md",
+  "homepage": "https://github.com/mkk-karthi/create-new-express-project#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/SBoudrias/Inquirer.js.git"
+    "url": "https://github.com/mkk-karthi/create-new-express-project"
   },
   "main": "index.js",
   "type": "module",

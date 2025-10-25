@@ -12,12 +12,6 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const questions = [
-  {
-    type: "input",
-    name: "projectName",
-    message: "Project Name:",
-    default: "my-express-app",
-  },
   // {
   //   type: "list",
   //   name: "language",
@@ -100,10 +94,24 @@ const questions = [
 //   },
 // ];
 
+const projectName = process.argv[2];
+if (!projectName) {
+  questions.unshift({
+    type: "input",
+    name: "projectName",
+    message: "Project Name:",
+    default: "my-express-app",
+  });
+}
+
 const run = async () => {
   const answers = await inquirer.prompt(questions);
 
-  const { projectName } = answers;
+  if (!projectName) {
+    projectName = answers.projectName;
+  } else {
+    answers.projectName = projectName;
+  }
   const language = "js";
 
   if (!fs.existsSync(projectName)) {
