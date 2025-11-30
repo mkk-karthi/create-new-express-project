@@ -1,4 +1,4 @@
-export default {
+const userController = {
   index(req, res) {},
   create(req, res) {},
   store(req, res) {},
@@ -6,3 +6,5 @@ export default {
   update(req, res) {},
   delete(req, res) {},
 };
+
+export default userController;

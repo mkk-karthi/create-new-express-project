@@ -102,6 +102,30 @@ const run = async () => {
       default: false,
     },
     {
+      type: "list",
+      name: "database",
+      message: "Do you have Database?",
+      choices: [
+        {
+          name: "No",
+          value: false,
+        },
+        {
+          name: "MongoDB",
+          value: "mongoose",
+        },
+        {
+          name: "MySQL",
+          value: "mysql",
+        },
+        {
+          name: "MySQL + Sequelize",
+          value: "mysql_sequelize",
+        },
+      ],
+      default: false,
+    },
+    {
       name: "tools",
       type: "checkbox",
       message: "Tools:",
@@ -155,7 +179,6 @@ const run = async () => {
     updateProgressBar("Initializing...");
     fs.mkdirSync(projectName);
 
-    updateProgressBar("Creating package.json...");
     // creating package.json
     await createPackageJSON(language, answers);
 
@@ -164,7 +187,7 @@ const run = async () => {
     init.createProject();
     init.createApp();
 
-    updateProgressBar("Completed!");
+    updateProgressBar("Completed!", true);
 
     console.log("\nProject created successfully!\n");
     console.log("Next Steps:");

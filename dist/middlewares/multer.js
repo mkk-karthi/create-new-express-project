@@ -28,7 +28,7 @@ const storage = multer.diskStorage({
 //   if (mimetype && extname) {
 //     return cb(null, true);
 //   } else {
-//     cb(new Error("MULTER_INVALID_FILE_TYPE"), false);
+//     cb(new multer.MulterError("INVALID_FILE_TYPE"), false);
 //   }
 // };
 
