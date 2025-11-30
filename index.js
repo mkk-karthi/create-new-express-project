@@ -1,110 +1,144 @@
 #!/usr/bin/env node
 
+"use strict";
+
 import fs from "fs";
+import path from "path";
 import inquirer from "inquirer";
+import { Command } from "commander";
 import { updateProgressBar } from "./lib/common.js";
-import initApp from "./lib/file.js";
+import initApp from "./lib/initApp.js";
 
 import { fileURLToPath } from "url";
 import { dirname } from "path";
+import createPackageJSON from "./lib/createPackage.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const questions = [
-  // {
-  //   type: "list",
-  //   name: "language",
-  //   message: "Prefered language:",
-  //   choices: [
-  //     {
-  //       name: "Javascript",
-  //       value: "js",
-  //     },
-  //     {
-  //       name: "Typescript",
-  //       value: "ts",
-  //     },
-  //   ],
-  //   default: "js",
-  // },
-  {
-    type: "confirm",
-    name: "viewEngine",
-    message: "Do you have View Engine (ejs)?",
-    default: false,
-  },
-  {
-    type: "list",
-    name: "validator",
-    message: "Do you have Validator?",
-    choices: [
-      {
-        name: "No",
-        value: false,
-      },
-      {
-        name: "express-validator",
-        value: "express",
-      },
-      {
-        name: "joi",
-        value: "joi",
-      },
-    ],
-    default: false,
-  },
-];
+const handleExit = () => {
+  console.log("Operation cancelled.");
+  process.exit();
+};
 
-// const questions1 = [
-//   {
-//     type: "confirm",
-//     name: "haveDatabase",
-//     message: "Do you have Database?",
-//     default: false,
-//   },
-//   {
-//     type: "list",
-//     name: "database",
-//     message: "Select Database:",
-//     choices: [
-//       {
-//         name: "MySQL",
-//         value: "mysql",
-//       },
-//       {
-//         name: "MongoDB",
-//         value: "mongo",
-//       },
-//     ],
-//     default: "mysql",
-//     when: (ans) => ans.haveDatabase,
-//   },
-//   {
-//     type: "confirm",
-//     name: "logger",
-//     message: "Do you have Logger (winston)?",
-//     default: false,
-//   },
-//   {
-//     type: "confirm",
-//     name: "testingTool",
-//     message: "Do you have Testing tool (jest)?",
-//     default: false,
-//   },
-// ];
+const handleError = (e) => {
+  if (e instanceof Error && e.name === "ExitPromptError") {
+    handleExit();
+  } else {
+    console.error("ERROR! An error was encountered while executing");
+    console.error(e);
+    process.exit(1);
+  }
+};
 
-const projectName = process.argv[2];
-if (!projectName) {
-  questions.unshift({
-    type: "input",
-    name: "projectName",
-    message: "Project Name:",
-    default: "my-express-app",
-  });
+process.on("SIGINT", handleExit);
+process.on("uncaughtException", handleError);
+
+// check node version
+const nodeVersion = process.versions.node;
+const majorVersion = 18;
+const [major] = nodeVersion.split(".").map(Number);
+if (major < majorVersion) {
+  console.error(
+    `You are using npm ${nodeVersion}. Requires Node ${majorVersion} or higher. \nPlease update your version of Node.`
+  );
+  process.exit(1);
 }
 
+const packageJson = JSON.parse(fs.readFileSync(path.join(__dirname, "package.json"), "utf8"));
 const run = async () => {
+  let projectName;
+
+  const program = new Command(packageJson.name)
+    .version(packageJson.version)
+    .description("CLI to create Express app in MVC pattern")
+    .arguments("<project-name>")
+    .usage(`<project-name> [options]`)
+    .action((name) => {
+      projectName = name;
+    });
+
+  const questions = [
+    // {
+    //   type: "list",
+    //   name: "language",
+    //   message: "Prefered language:",
+    //   choices: [
+    //     {
+    //       name: "Javascript",
+    //       value: "js",
+    //     },
+    //     {
+    //       name: "Typescript",
+    //       value: "ts",
+    //     },
+    //   ],
+    //   default: "js",
+    // },
+    {
+      type: "confirm",
+      name: "viewEngine",
+      message: "Do you have View Engine (ejs)?",
+      default: false,
+    },
+    {
+      type: "list",
+      name: "validator",
+      message: "Do you have Validator?",
+      choices: [
+        {
+          name: "No",
+          value: false,
+        },
+        {
+          name: "express-validator",
+          value: "express-validator",
+        },
+        {
+          name: "joi",
+          value: "joi",
+        },
+      ],
+      default: false,
+    },
+    {
+      name: "tools",
+      type: "checkbox",
+      message: "Tools:",
+      choices: [
+        {
+          name: "Mail (nodemailer)",
+          value: "nodemailer",
+        },
+        {
+          name: "File Upload (multer)",
+          value: "multer",
+        },
+        // {
+        //   name: "Logger (winston)",
+        //   value: "winston",
+        // },
+        // {
+        //   name: "Testing Tool (jest)",
+        //   value: "jest",
+        // },
+        // {
+        //   name: "Api Document (swagger)",
+        //   value: "swagger",
+        // },
+      ],
+    },
+  ];
+
+  if (!projectName) {
+    questions.unshift({
+      type: "input",
+      name: "projectName",
+      message: "Project Name:",
+      default: "my-express-app",
+    });
+  }
+
   const answers = await inquirer.prompt(questions);
 
   if (!projectName) {
@@ -117,17 +151,18 @@ const run = async () => {
   if (!fs.existsSync(projectName)) {
     console.log("\n");
     const init = initApp(language, answers, __dirname);
-    updateProgressBar("Initializing...");
 
-    // create folder structure
-    init.createProjectStructure();
+    updateProgressBar("Initializing...");
+    fs.mkdirSync(projectName);
 
     updateProgressBar("Creating package.json...");
     // creating package.json
-    await init.createPackage();
+    await createPackageJSON(language, answers);
 
     updateProgressBar("Creating project setup...");
+    // create folder structure
     init.createProject();
+    init.createApp();
 
     updateProgressBar("Completed!");
 
@@ -143,17 +178,3 @@ const run = async () => {
 };
 
 run();
-
-process.on("SIGINT", () => {
-  console.log("Thank you");
-  process.exit(0); // Exit gracefully after cleanup
-});
-
-process.on("uncaughtException", (error) => {
-  if (error instanceof Error && error.name === "ExitPromptError") {
-    console.log("Thank you");
-    process.exit(0); // Exit gracefully after cleanup
-  } else {
-    console.error(error);
-  }
-});

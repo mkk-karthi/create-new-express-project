@@ -1,7 +1,7 @@
 {
   "name": "create-new-express-project",
-  "version": "1.0.5",
-  "description": "Create express app in MVC pattern",
+  "version": "2.0.0",
+  "description": "CLI to create express app in MVC pattern",
   "keywords": [
     "express",
     "express-app",
@@ -30,6 +30,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "commander": "^14.0.2",
     "inquirer": "^12.9.6"
   },
   "engines": {

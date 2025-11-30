@@ -125,5 +125,5 @@ Feel free to open a pull request.
 
 ## 💡 Author
 
-**Your Name**
+**Karthikeyan M**
 👨‍💻 [GitHub](https://github.com/mkk-karthi)
