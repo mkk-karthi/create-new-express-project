@@ -5,21 +5,21 @@ A professional **Express.js starter boilerplate** with **MVC architecture**, sec
 
 ## 📦 Features
 
-✅ **Express.js** – Fast, minimalist web framework
-✅ **MVC Architecture** – Organized Models, Views, Controllers
-✅ **dotenv** – Environment variable management
-✅ **CORS** – Cross-origin resource sharing
-✅ **Helmet** – Secure your app with HTTP headers
-✅ **express-rate-limit** – Protect APIs from abuse
-✅ *(Optional)* **EJS** – Embedded JavaScript templates for views
-✅ *(Optional)* **Validation** – Input validation using `express-validator` or `joi`
-✅ **Multer** — File uploads handler
-✅ **Nodemailer** — Email sending support
+✅ **Express.js** – Fast, minimalist web framework  
+✅ **MVC Architecture** – Organized Models, Views, Controllers  
+✅ **dotenv** – Environment variable management  
+✅ **CORS** – Cross-origin resource sharing  
+✅ **Helmet** – Secure your app with HTTP headers  
+✅ **express-rate-limit** – Protect APIs from abuse  
+✅ *(Optional)* **EJS** – Embedded JavaScript templates for views  
+✅ *(Optional)* **Validation** – Input validation using `express-validator` or `joi`  
+✅ **Multer** — File uploads handler  
+✅ **Nodemailer** — Email sending support  
 
 ### 🛢 Database Support
-Choose any database you want:
-✅ Mongoose
-✅ MySQL / PostgreSQL / SQLite via Sequelize ORM (Eloquent-style)
+Choose any database you want:  
+✅ Mongoose  
+✅ MySQL / PostgreSQL / SQLite via Sequelize ORM (Eloquent-style)  
 
 ---
 
