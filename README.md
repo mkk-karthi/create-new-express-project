@@ -1,19 +1,25 @@
 # 🚀 Express MVC Starter
 
-A professional **Express.js starter boilerplate** with **MVC architecture**, security middlewares, environment configuration, and optional validation and templating setup — perfect for scalable Node.js backend projects.
-
+A professional **Express.js starter boilerplate** with **MVC architecture**, security, ORM/DB options, file upload utilities, mailing, and scalable architecture — ideal for enterprise-grade Node.js applications.
 ---
 
 ## 📦 Features
 
-✅ **Express.js** – Fast, minimalist web framework  
-✅ **MVC Architecture** – Organized Models, Views, Controllers  
-✅ **dotenv** – Environment variable management  
-✅ **CORS** – Cross-origin resource sharing  
-✅ **Helmet** – Secure your app with HTTP headers  
-✅ **express-rate-limit** – Protect APIs from abuse  
-✅ *(Optional)* **EJS** – Embedded JavaScript templates for views  
-✅ *(Optional)* **Validation** – Input validation using `express-validator` or `joi`  
+✅ **Express.js** – Fast, minimalist web framework
+✅ **MVC Architecture** – Organized Models, Views, Controllers
+✅ **dotenv** – Environment variable management
+✅ **CORS** – Cross-origin resource sharing
+✅ **Helmet** – Secure your app with HTTP headers
+✅ **express-rate-limit** – Protect APIs from abuse
+✅ *(Optional)* **EJS** – Embedded JavaScript templates for views
+✅ *(Optional)* **Validation** – Input validation using `express-validator` or `joi`
+✅ **Multer** — File uploads handler
+✅ **Nodemailer** — Email sending support
+
+### 🛢 Database Support
+Choose any database you want:
+✅ Mongoose
+✅ MySQL / PostgreSQL / SQLite via Sequelize ORM (Eloquent-style)
 
 ---
 
@@ -34,6 +40,10 @@ my-express-app/
 │   │   └── rateLimit.js
 │   ├── config/
 │   │   └── app.js
+│   ├── public/
+│   │   └── logo.png
+│   ├── utils/
+│   │   └── multer.js
 │   ├── views/
 │   │   └── index.ejs
 │   └── app.js
@@ -125,5 +135,5 @@ Feel free to open a pull request.
 
 ## 💡 Author
 
-**Your Name**
+**Karthikeyan M**
 👨‍💻 [GitHub](https://github.com/mkk-karthi)
