@@ -6,7 +6,7 @@ import fs from "fs";
 import path from "path";
 import inquirer from "inquirer";
 import { Command } from "commander";
-import { updateProgressBar } from "./lib/common.js";
+import { generateFolderName, updateProgressBar } from "./lib/common.js";
 import initApp from "./lib/initApp.js";
 
 import { fileURLToPath } from "url";
@@ -138,18 +138,18 @@ const run = async () => {
           name: "File Upload (multer)",
           value: "multer",
         },
+        {
+          name: "Api Document (swagger)",
+          value: "swagger",
+        },
         // {
         //   name: "Logger (winston)",
         //   value: "winston",
         // },
-        // {
-        //   name: "Testing Tool (jest)",
-        //   value: "jest",
-        // },
-        // {
-        //   name: "Api Document (swagger)",
-        //   value: "swagger",
-        // },
+        {
+          name: "Testing Tool (jest)",
+          value: "jest",
+        },
       ],
     },
   ];
@@ -170,6 +170,7 @@ const run = async () => {
   } else {
     answers.projectName = projectName;
   }
+
   const language = "js";
 
   if (!fs.existsSync(projectName)) {

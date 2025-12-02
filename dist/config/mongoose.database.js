@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import logger from "../utils/logger.js"
 
 // Mongo DB conncetion
 function DbConnect() {
@@ -8,8 +9,8 @@ function DbConnect() {
     .connect(db_uri, {
       connectTimeoutMS: 1000,
     })
-    .then((res) => console.log("DB connected"))
-    .catch((err) => console.log(err));
+    .then((res) => logger.info("DB connected"))
+    .catch((err) => logger.info(err));
 }
 
 export default DbConnect;
