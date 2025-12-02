@@ -142,10 +142,6 @@ const run = async () => {
           name: "Api Document (swagger)",
           value: "swagger",
         },
-        // {
-        //   name: "Logger (winston)",
-        //   value: "winston",
-        // },
         {
           name: "Testing Tool (jest)",
           value: "jest",
@@ -170,15 +166,17 @@ const run = async () => {
   } else {
     answers.projectName = projectName;
   }
+  let folderName = generateFolderName(projectName);
+  answers.folderName = folderName;
 
   const language = "js";
 
-  if (!fs.existsSync(projectName)) {
+  if (!fs.existsSync(folderName)) {
     console.log("\n");
     const init = initApp(language, answers, __dirname);
 
     updateProgressBar("Initializing...");
-    fs.mkdirSync(projectName);
+    fs.mkdirSync(folderName);
 
     // creating package.json
     await createPackageJSON(language, answers);
@@ -192,12 +190,12 @@ const run = async () => {
 
     console.log("\nProject created successfully!\n");
     console.log("Next Steps:");
-    console.log(`1. cd ${projectName}/`);
+    console.log(`1. cd ${folderName}/`);
     console.log("2. npm install");
     console.log("3. npm run dev");
     console.log("\nEnjoy!\n");
   } else {
-    console.log(`\n${projectName} folder already exist\n`);
+    console.log(`\n${folderName} folder already exist\n`);
   }
 };
 
