@@ -94,6 +94,9 @@ npm run dev
 
 # Production mode
 npm start
+
+# Testing mode
+npm run test
 ```
 
 Server runs at:
@@ -107,6 +110,7 @@ Server runs at:
 | ------------- | ------------------------- |
 | `npm run dev` | Start with nodemon        |
 | `npm start`   | Run app in production     |
+| `npm run test`| Test the project          |
 
 ---
 
