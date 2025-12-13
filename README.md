@@ -106,11 +106,20 @@ Server runs at:
 
 ## 🧠 Scripts
 
-| Command       | Description               |
-| ------------- | ------------------------- |
-| `npm run dev` | Start with nodemon        |
-| `npm start`   | Run app in production     |
-| `npm run test`| Test the project          |
+| Command              | Description                            |
+| -------------------- | -------------------------------------- |
+| `npm run dev`        | Start with nodemon                     |
+| `npm start`          | Run app in production                  |
+| `npm run test`       | Run unit tests with Jest               |
+| `npm run test:coverage` | Run tests with coverage reports     |
+
+### Database Migrations (Sequelize)
+
+| Command               | Description                                                  |
+| --------------------- | ------------------------------------------------------------ |
+| `npm run db:migrate`  | Create database tables based on model files                  |
+| `npm run db:refresh`  | Drop all tables and recreate from model files                |
+| `npm run db:seed`     | Populate database with seed data                             |
 
 ---
 
