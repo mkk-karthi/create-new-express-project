@@ -1,4 +1,5 @@
 import mysql from "mysql2";
+import logger from "../utils/logger.js"
 
 const connection = mysql.createConnection({
   host: process.env.DB_HOST,
@@ -11,10 +12,10 @@ const connection = mysql.createConnection({
 
 connection.connect((err) => {
   if (err) {
-    console.error("Error connecting to MySQL:", err);
+    logger.error("Error connecting to MySQL:", err);
     return;
   }
-  console.log("Connected to MySQL database");
+  logger.info("Connected to MySQL database");
 });
 
 export default connection;

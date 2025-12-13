@@ -1,6 +1,6 @@
 # 🚀 Express MVC Starter
 
-A professional **Express.js starter boilerplate** with **MVC architecture**, security, ORM/DB options, file upload utilities, mailing, and scalable architecture — ideal for enterprise-grade Node.js applications.
+A professional **Express.js starter boilerplate** with **MVC architecture**, security, logging, ORM/DB options, file upload utilities, mailing, API documentation, and scalable architecture — ideal for enterprise-grade Node.js applications.
 ---
 
 ## 📦 Features
@@ -11,15 +11,18 @@ A professional **Express.js starter boilerplate** with **MVC architecture**, sec
 ✅ **CORS** – Cross-origin resource sharing  
 ✅ **Helmet** – Secure your app with HTTP headers  
 ✅ **express-rate-limit** – Protect APIs from abuse  
+✅ **Logger** — Professional logging with levels & transports  
 ✅ *(Optional)* **EJS** – Embedded JavaScript templates for views  
 ✅ *(Optional)* **Validation** – Input validation using `express-validator` or `joi`  
-✅ **Multer** — File uploads handler  
-✅ **Nodemailer** — Email sending support  
+✅ *(Optional)* **Multer** — File uploads handler  
+✅ *(Optional)* **Nodemailer** — Email sending support  
+✅ *(Optional)* **Swagger** (OpenAPI 3) — Auto-generated API docs at /api-docs  
+✅ *(Optional)* **Testing Tool** - Jest & Supertest with coverage reports  
 
 ### 🛢 Database Support
 Choose any database you want:  
 ✅ Mongoose  
-✅ MySQL / PostgreSQL / SQLite via Sequelize ORM (Eloquent-style)  
+✅ MySQL via Sequelize ORM (Eloquent-style)  
 
 ---
 
@@ -44,6 +47,8 @@ my-express-app/
 │   │   └── logo.png
 │   ├── utils/
 │   │   └── multer.js
+│   ├── tests/
+│   │   └── user.test.js
 │   ├── views/
 │   │   └── index.ejs
 │   └── app.js
@@ -75,6 +80,8 @@ Create a `.env` file in the root directory:
 ```env
 PORT=3000
 NODE_ENV=development
+
+# config databse
 ```
 
 ---
@@ -87,6 +94,9 @@ npm run dev
 
 # Production mode
 npm start
+
+# Testing mode
+npm run test
 ```
 
 Server runs at:
@@ -96,10 +106,27 @@ Server runs at:
 
 ## 🧠 Scripts
 
-| Command       | Description               |
-| ------------- | ------------------------- |
-| `npm run dev` | Start with nodemon        |
-| `npm start`   | Run app in production     |
+| Command              | Description                            |
+| -------------------- | -------------------------------------- |
+| `npm run dev`        | Start with nodemon                     |
+| `npm start`          | Run app in production                  |
+| `npm run test`       | Run unit tests with Jest               |
+| `npm run test:coverage` | Run tests with coverage reports     |
+
+### Database Migrations (Sequelize)
+
+| Command               | Description                                                  |
+| --------------------- | ------------------------------------------------------------ |
+| `npm run db:migrate`  | Create database tables based on model files                  |
+| `npm run db:refresh`  | Drop all tables and recreate from model files                |
+| `npm run db:seed`     | Populate database with seed data                             |
+
+---
+
+## 📖 API Documentation
+
+Swagger UI is available at:
+👉 [http://localhost:3000/api-docs/](http://localhost:3000/api-docs/)
 
 ---
 
@@ -117,6 +144,12 @@ Server runs at:
 * **Express.js**
 * **EJS** (optional)
 * **Joi / express-validator** (optional)
+* **Mongoose / MySQL via Sequelize**
+* **Multer**
+* **Nodemailer**
+* **Winston**
+* **Swagger**
+* **Jest**
 
 ---
 

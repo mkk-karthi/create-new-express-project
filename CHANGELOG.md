@@ -1,17 +1,15 @@
 # Changelog
 
-## [2.0.0]
+## [3.0.0]
 
 ### Added
 
-- Multer – File uploads handler
-- Nodemailer - Email sending support
-- Databases - Mongoose / MySQL via Sequelize ORM (Eloquent-style)
-- Add help and tips for the package use commander
+- Swagger — Auto-generated API docs at /api-docs
+- Logger (winston) - Professional logging with levels & transports
+- Testing Tool - Jest & Supertest with coverage reports
 
 
 ### Changed
 
 - # File architectures
-  - Remove services, storage directory
-  - Add utils directory
+  - Dynamic project directory
