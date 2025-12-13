@@ -1,6 +1,6 @@
 {
   "name": "create-new-express-project",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "CLI to create express app in MVC pattern",
   "keywords": [
     "express",
